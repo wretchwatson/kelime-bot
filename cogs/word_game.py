@@ -109,7 +109,7 @@ class WordGame(commands.Cog):
 
         if result is None:
             await message.add_reaction("❌")
-            await message.channel.send(f"{message.author.mention} {error}", delete_after=8)
+            await message.channel.send(f"{message.author.mention} ❌ **{error}**")
             return
 
         await message.add_reaction("✅")
