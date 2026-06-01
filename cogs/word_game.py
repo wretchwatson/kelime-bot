@@ -72,6 +72,11 @@ class WordGame(commands.Cog):
         )
         for i, (user_id, score) in enumerate(leaderboard, 1):
             user = self.bot.get_user(user_id)
+            if user is None:
+                try:
+                    user = await self.bot.fetch_user(user_id)
+                except:
+                    pass
             name = user.display_name if user else f"Kullanıcı {user_id}"
             embed.add_field(
                 name=f"{i}. {name}",
