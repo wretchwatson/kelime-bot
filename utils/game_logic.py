@@ -28,6 +28,12 @@ class GameManager:
         text = text.replace("Ş", "ş").replace("Ğ", "ğ")
         return text.lower()
 
+    def turkish_upper(self, text):
+        text = text.replace("i", "İ").replace("ı", "I")
+        text = text.replace("ü", "Ü").replace("ö", "Ö").replace("ç", "Ç")
+        text = text.replace("ş", "Ş").replace("ğ", "Ğ")
+        return text.upper()
+
     def get_last_letter(self, word):
         word = self.turkish_lower(word)
         return word[-1] if word else ""
@@ -73,7 +79,7 @@ class GameManager:
             if word_lower[0] not in ("g", "k"):
                 return None, f"Son harf **ğ** olduğu için kelime **g** veya **k** ile başlamalı."
         elif word_lower[0] != expected:
-            return None, f"Kelime **{expected.upper()}** harfi ile başlamalı."
+            return None, f"Kelime **{self.turkish_upper(expected)}** harfi ile başlamalı."
 
         if not self.is_valid_word(word):
             return None, "Bu geçerli bir Türkçe kelime değil."

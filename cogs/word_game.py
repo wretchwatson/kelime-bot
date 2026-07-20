@@ -40,7 +40,7 @@ class WordGame(commands.Cog):
 
         embed = discord.Embed(
             title="Oyun Başladı!",
-            description=f"İlk kelime: **{word}**\nSon harf: **{last.upper()}**\n\nBu harfle başlayan bir kelime yaz!",
+            description=f"İlk kelime: **{word}**\nSon harf: **{game.turkish_upper(last)}**\n\nBu harfle başlayan bir kelime yaz!",
             color=discord.Color.green(),
         )
         await interaction.response.send_message(embed=embed)
@@ -119,9 +119,9 @@ class WordGame(commands.Cog):
 
         await message.add_reaction("✅")
         if result == "ğ":
-            next_msg = f"{message.author.mention} **{word.upper()}** ✅ (+{len(word)} puan)\n📌 Son harf ğ — bir sonraki kelime **G** veya **K** ile başlamalı!"
+            next_msg = f"{message.author.mention} **{game.turkish_upper(word)}** ✅ (+{len(word)} puan)\n📌 Son harf ğ — bir sonraki kelime **G** veya **K** ile başlamalı!"
         else:
-            next_msg = f"{message.author.mention} **{word.upper()}** ✅ (+{len(word)} puan)\n📌 Sıradaki harf: **{result.upper()}**"
+            next_msg = f"{message.author.mention} **{game.turkish_upper(word)}** ✅ (+{len(word)} puan)\n📌 Sıradaki harf: **{game.turkish_upper(result)}**"
         await message.channel.send(next_msg)
 
 async def setup(bot):
